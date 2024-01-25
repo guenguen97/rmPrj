@@ -12,4 +12,6 @@ public interface UserMapper {
 
         List<SiteUser> getUser();
 
+        void save(SiteUser user);
+
 }

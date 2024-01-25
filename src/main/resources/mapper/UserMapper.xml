@@ -3,12 +3,19 @@
 
 
 <mapper namespace="com.rm.user.UserMapper">
+    <sql id="siteUserColumns">
+        id
+        , userId
+        , userPw
+        , email
+
+    </sql>
+
 
     <resultMap id="UserResultMap" type="com.rm.user.SiteUser">
-        <id property="id" column="id"/>
-        <result property="username" column="username"/>
+        <id property="id" column="userId"/>
+        <result property="username" column="userName"/>
         <result property="password" column="userPw"/>
-        <!-- other result mappings... -->
     </resultMap>
 
     <select id="getUserByUsernameAndPassword" resultType="com.rm.user.SiteUser">
@@ -17,5 +24,17 @@
     <select id="getUser" resultMap="UserResultMap">
         SELECT * FROM siteUser
     </select>
+
+    <insert id="save" parameterType="com.rm.user.SiteUser" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO siteUser (
+        <include refid="siteUserColumns" />
+        ) VALUES (
+          #{id}
+        , #{userId}
+        , #{password}
+        , #{email}
+        )
+
+    </insert>
 
 </mapper>

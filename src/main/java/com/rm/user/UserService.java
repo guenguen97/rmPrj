@@ -1,6 +1,7 @@
 package com.rm.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,5 +22,20 @@ public class UserService {
 
     public List<SiteUser> getUsers() {
         return userMapper.getUser();
+    }
+
+    public SiteUser create(String userName, String email , String password ){
+        SiteUser user =new SiteUser();
+        user.setUserId(userName);
+
+        user.setEmail(email);
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        user.setPassword(passwordEncoder.encode(password));
+        userMapper.save(user);
+
+        return user;
+
+
+
     }
 }

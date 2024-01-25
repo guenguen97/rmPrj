@@ -2,12 +2,11 @@ package com.rm.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/user")
+
 public class UserController {
 
     private final UserService userService;
@@ -25,14 +24,21 @@ public class UserController {
 
         return "test";
     }
-    @PostMapping("/login")
-    public String login(@RequestBody SiteUser user) {
-        SiteUser foundUser = userService.loginUser(user.getUsername(), user.getPassword());
 
-        if (foundUser != null) {
-            return "Login successful!";
-        } else {
-            return "Login failed!";
-        }
+    @GetMapping("/signUpPage")
+    public String signUp(){
+
+        return "signUp";
+    }
+
+
+
+    @PostMapping("/signUp")
+    public String signUp( @RequestParam(value = "userName")String username,
+                          @RequestParam(value = "password1") String password1,
+                          @RequestParam(value = "email") String email){
+        userService.create(username,password1,email);
+
+        return "main";
     }
 }
