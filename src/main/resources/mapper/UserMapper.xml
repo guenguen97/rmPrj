@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.rm.user.UserMapper">
+
+    <resultMap id="UserResultMap" type="com.rm.user.SiteUser">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="userPw"/>
+        <!-- other result mappings... -->
+    </resultMap>
+
+    <select id="getUserByUsernameAndPassword" resultType="com.rm.user.SiteUser">
+        SELECT * FROM siteUser WHERE username = #{username} AND password = #{password}
+    </select>
+    <select id="getUser" resultMap="UserResultMap">
+        SELECT * FROM siteUser
+    </select>
+
+</mapper>
