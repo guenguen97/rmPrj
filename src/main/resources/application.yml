@@ -1,0 +1,32 @@
+server:
+  port: 8090
+
+
+spring:
+  output:
+    ansi:
+      enabled: always
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/rm
+    username: root
+    password:
+  config:
+    properties:
+      hibernate:
+        format_sql: true
+        highlight_sql: true
+        use_sql_comments: true
+
+  thymeleaf:
+    cache: false
+    prefix: file:src/main/resources/templates/
+  mybatis:
+    configuration:
+      multiple-result-sets-enabled:
+        false    map-underscore-to-camel-case:
+          true    call-setters-on-nulls:
+            true        jdbc-type-for-null:
+              varchar    default-fetch-size:
+                500  mapper-locations:
+
