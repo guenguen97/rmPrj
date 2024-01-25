@@ -4,10 +4,12 @@
 
 <mapper namespace="com.rm.user.UserMapper">
     <sql id="siteUserColumns">
-        id
+          id
         , userId
         , userPw
         , email
+        , userName
+        , createDate
 
     </sql>
 
@@ -31,8 +33,10 @@
         ) VALUES (
           #{id}
         , #{userId}
-        , #{password}
+        , #{userPw}
         , #{email}
+        , null
+        , #{createDate}
         )
 
     </insert>

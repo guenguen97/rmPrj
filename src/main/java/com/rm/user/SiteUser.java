@@ -5,6 +5,8 @@ package com.rm.user;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 public class SiteUser {
@@ -14,8 +16,11 @@ public class SiteUser {
 
     private String userId;
 
-
-    private String password;
+    private String userPw;
 
     private String email;
+
+    private String userName;
+
+    private LocalDateTime createDate;
 }

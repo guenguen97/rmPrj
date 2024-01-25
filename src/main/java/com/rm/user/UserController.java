@@ -19,13 +19,12 @@ public class UserController {
     @GetMapping("/test")
     @ResponseBody
     public String test(){
-        System.out.println(userService.getUsers().get(0).getPassword());
 
 
         return "test";
     }
 
-    @GetMapping("/signUpPage")
+    @GetMapping("/signUp")
     public String signUp(){
 
         return "signUp";
@@ -41,4 +40,6 @@ public class UserController {
 
         return "main";
     }
+
+
 }

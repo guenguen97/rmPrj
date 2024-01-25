@@ -1,0 +1,13 @@
+
+DROP TABLE siteUser;
+
+
+CREATE TABLE siteUser (
+    id INT NOT NULL AUTO_INCREMENT,
+    userId VARCHAR(255) NOT NULL,
+    userPw VARCHAR(255) NOT NULL,
+    userName VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    createDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+    PRIMARY KEY (id)
+);

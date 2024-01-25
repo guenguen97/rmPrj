@@ -15,9 +15,7 @@ public class main {
     @GetMapping("/")
     @ResponseBody
     public String main(){
-        System.out.println(userService.loginUser("asd","asd"));
 
-        System.out.println(userService.getUsers().size());
         return "hi";
     }
 
