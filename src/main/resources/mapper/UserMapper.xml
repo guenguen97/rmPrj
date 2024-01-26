@@ -5,40 +5,54 @@
 <mapper namespace="com.rm.user.UserMapper">
     <sql id="siteUserColumns">
           id
-        , userId
+        , userID
         , userPw
         , userName
         , email
+        , ticket
         , createDate
-
+        , updateDate
     </sql>
 
 
-    <resultMap id="UserResultMap" type="com.rm.user.SiteUser">
-        <id property="id" column="userId"/>
-        <result property="username" column="userName"/>
-        <result property="password" column="userPw"/>
+    <resultMap id="UserResultMap" type="com.rm.user.SiteUserRequest">
+        <id property="id" column="userID"/>
+        <result property="userName" column="userName"/>
+        <result property="userPw" column="userPw"/>
     </resultMap>
 
-    <select id="getUserByUsernameAndPassword" resultType="com.rm.user.SiteUser">
-        SELECT * FROM siteUser WHERE username = #{username} AND password = #{password}
-    </select>
+
     <select id="getUser" resultMap="UserResultMap">
         SELECT * FROM siteUser
     </select>
 
-    <insert id="save" parameterType="com.rm.user.SiteUser" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.rm.user.SiteUserRequest" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO siteUser (
         <include refid="siteUserColumns" />
         ) VALUES (
           #{id}
-        , #{userId}
+        , #{userID}
         , #{userPw}
         , #{userName}
         , #{email}
-        , #{createDate}
+        , 1
+        , Now()
+        , NULL
         )
 
     </insert>
+
+
+    <select id="getByUserID" parameterType="String" resultType="com.rm.user.SiteUserResponse">
+        SELECT
+            <include refid="siteUserColumns"/>
+        FROM siteUser
+
+        WHERE
+            ticket = 1
+            AND userID = #{value}
+
+
+    </select>
 
 </mapper>

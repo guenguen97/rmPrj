@@ -17,26 +17,21 @@ public class UserService {
         this.userMapper = userMapper;
     }
 
-    public SiteUser loginUser(String username, String password) {
-        return userMapper.getUserByUsernameAndPassword(username, password);
-    }
 
-    public List<SiteUser> getUsers() {
+
+    public List<SiteUserRequest> getUsers() {
         return userMapper.getUser();
     }
 
-    public SiteUser create(String userId,String password, String userName ,String email  ){
-        SiteUser user =new SiteUser();
-        user.setUserId(userId);
-        user.setUserName(userName);
+    public SiteUserResponse findUserByUserID(String userID){
+        return userMapper.getByUserID(userID);
+    }
 
-        user.setEmail(email);
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        user.setUserPw(passwordEncoder.encode(password));
-        user.setCreateDate(LocalDateTime.now());
+    public Long create(SiteUserRequest user  ){
+
         userMapper.save(user);
 
-        return user;
+        return user.getId();
 
 
 

@@ -8,10 +8,9 @@ import java.util.List;
 public interface UserMapper {
 
 
-        SiteUser getUserByUsernameAndPassword(String username, String password);
+        SiteUserResponse getByUserID(String userID);
+        List<SiteUserRequest> getUser();
 
-        List<SiteUser> getUser();
-
-        void save(SiteUser user);
+        void save(SiteUserRequest user);
 
 }

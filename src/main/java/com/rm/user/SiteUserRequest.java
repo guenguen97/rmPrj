@@ -9,20 +9,12 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class SiteUser {
-
+public class SiteUserRequest {
 
     private Long id;
-
-    private String userId;
-
+    private String userID;
     private String userPw;
-
     private String userName;
-
     private String email;
-
-
-
     private LocalDateTime createDate;
 }

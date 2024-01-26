@@ -1,6 +1,7 @@
 package com.rm.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,20 +28,25 @@ public class UserController {
     @GetMapping("/signUp-page")
     public String signUp(){
 
-        return "signUp";
+        return "login";
     }
 
 
 
     @PostMapping("/signUp")
-    public String signUp( @RequestParam(value = "userId")String userId,
-                          @RequestParam(value = "password1") String password1,
-                          @RequestParam(value = "userName") String userName,
-                          @RequestParam(value = "email") String email){
-        userService.create(userId,password1,userName,email);
+    public String signUp(SiteUserRequest user){
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        user.setUserPw(passwordEncoder.encode(user.getUserPw()));
+        userService.create(user);
+        System.out.println(user.getId());
 
         return "main";
     }
 
+    @GetMapping("/member-count")
+    @ResponseBody
+    public int countMemberByLoginId(@RequestParam final String loginId) {
+        return memberService.countMemberByLoginId(loginId);
+    }
 
 }
