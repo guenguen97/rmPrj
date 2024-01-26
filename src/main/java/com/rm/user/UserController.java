@@ -33,8 +33,9 @@ public class UserController {
 
 
 
-    @PostMapping("/signUp")
-    public String signUp(SiteUserRequest user){
+    @PostMapping("/signUp" )
+    public String signUp(@RequestBody SiteUserRequest user){
+        System.out.println("정보 받기 성공!!!!!!!!!!");
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         user.setUserPw(passwordEncoder.encode(user.getUserPw()));
         userService.create(user);

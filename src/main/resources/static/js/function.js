@@ -55,7 +55,7 @@ function isValid(target, fieldName, focusTarget) {
     function callApi(uri, method, params) {
 
         let json = {}
-
+         JSON.stringify(params);
          $.ajax({
             url : uri,
             type : method,

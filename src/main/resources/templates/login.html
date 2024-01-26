@@ -65,7 +65,7 @@
                 </tr>
                 <tr>
                     <th scope="row">비밀번호 재입력<span class="es">필수 입력</span></th>
-                    <td><input type="password" name="passwordCheck" placeholder="비밀번호 재입력" maxlength="30" /></td>
+                    <td><input type="password" name="userPw" placeholder="비밀번호 재입력" maxlength="30" /></td>
                 </tr>
                 <tr>
                     <th scope="row">이름<span class="es">필수 입력</span></th>
@@ -144,7 +144,7 @@
             throw new Error();
         }
 
-        if (form.userPw.value !== form.passwordCheck.value) {
+        if (form.userPw.value !== form.userPw.value) {
             alert('비밀번호가 일치하지 않습니다.');
             form.passwordCheck.focus();
             throw new Error();
@@ -158,12 +158,14 @@
         // 1. 필드 유효성 검사
         const form = document.getElementById('signupForm');
         validationMemberInfo(form);
+        console.log(form);
+
 
         // 2. 파라미터 세팅
         const params = {}
         new FormData(form).forEach((value, key) => params[key] = value.trim());
 <!--        params.birthday = params.birthday.replace(/(\d{4})(\d{2})(\d{2})/g, '$1-$2-$3');-->
-
+         console.log(params);
         // 3. Save API 호출
         callApi('/user/signUp', 'post', params);
         alert('가입을 축하드립니다!\n로그인 후 서비스를 이용해 주세요.');
