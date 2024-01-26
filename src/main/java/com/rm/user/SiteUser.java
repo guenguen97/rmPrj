@@ -18,9 +18,11 @@ public class SiteUser {
 
     private String userPw;
 
+    private String userName;
+
     private String email;
 
-    private String userName;
+
 
     private LocalDateTime createDate;
 }

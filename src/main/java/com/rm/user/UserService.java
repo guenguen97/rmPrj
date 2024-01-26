@@ -25,9 +25,10 @@ public class UserService {
         return userMapper.getUser();
     }
 
-    public SiteUser create(String userName, String email , String password ){
+    public SiteUser create(String userId,String password, String userName ,String email  ){
         SiteUser user =new SiteUser();
-        user.setUserId(userName);
+        user.setUserId(userId);
+        user.setUserName(userName);
 
         user.setEmail(email);
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();

@@ -7,8 +7,8 @@
           id
         , userId
         , userPw
-        , email
         , userName
+        , email
         , createDate
 
     </sql>
@@ -34,8 +34,8 @@
           #{id}
         , #{userId}
         , #{userPw}
+        , #{userName}
         , #{email}
-        , null
         , #{createDate}
         )
 

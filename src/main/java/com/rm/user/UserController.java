@@ -24,7 +24,7 @@ public class UserController {
         return "test";
     }
 
-    @GetMapping("/signUp")
+    @GetMapping("/signUp-page")
     public String signUp(){
 
         return "signUp";
@@ -33,10 +33,11 @@ public class UserController {
 
 
     @PostMapping("/signUp")
-    public String signUp( @RequestParam(value = "userName")String username,
+    public String signUp( @RequestParam(value = "userId")String userId,
                           @RequestParam(value = "password1") String password1,
+                          @RequestParam(value = "userName") String userName,
                           @RequestParam(value = "email") String email){
-        userService.create(username,password1,email);
+        userService.create(userId,password1,userName,email);
 
         return "main";
     }
