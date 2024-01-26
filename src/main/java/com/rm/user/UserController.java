@@ -1,5 +1,6 @@
 package com.rm.user;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -7,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/user")
-
 public class UserController {
 
     private final UserService userService;
@@ -43,10 +43,11 @@ public class UserController {
         return "main";
     }
 
-    @GetMapping("/member-count")
+    @GetMapping("/siteUser-count")
     @ResponseBody
-    public int countMemberByLoginId(@RequestParam final String loginId) {
-        return memberService.countMemberByLoginId(loginId);
+    public int countMemberByLoginId(@RequestParam (name = "userID") final String userID) {
+        System.out.println(userID+"!!!!!!!!!!!!!!!!!!!!!!!!");
+        return userService.countSiteUserByUserID(userID);
     }
 
 }

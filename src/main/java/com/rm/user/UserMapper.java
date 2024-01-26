@@ -13,4 +13,5 @@ public interface UserMapper {
 
         void save(SiteUserRequest user);
 
+        int getSiteUserByUserID(String userID);
 }

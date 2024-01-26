@@ -55,4 +55,17 @@
 
     </select>
 
+    <select id="getSiteUserByUserID" parameterType="String" resultType="int">
+        SELECT
+            COUNT(*)
+        FROM
+            siteUser
+        WHERE
+
+           userID = #{value}
+
+
+
+    </select>
+
 </mapper>

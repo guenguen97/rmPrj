@@ -36,4 +36,8 @@ public class UserService {
 
 
     }
+
+    public int countSiteUserByUserID(String userID) {
+        return userMapper.getSiteUserByUserID(userID);
+    }
 }
