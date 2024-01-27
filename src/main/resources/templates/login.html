@@ -3,6 +3,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>로그인</title>
     <link rel="stylesheet" th:href="@{/css/default.css}" />
     <link rel="stylesheet" th:href="@{/css/common.css}" />
@@ -47,6 +49,7 @@
     <h3>회원가입</h3>
     <div class="pop_container">
         <form id="signupForm" onsubmit="return false;" autocomplete="off">
+
             <table class="tb tb_row tl">
                 <colgroup>
                     <col style="width:30%;" /><col style="width:70%;" />
