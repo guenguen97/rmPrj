@@ -12,3 +12,21 @@ CREATE TABLE siteUser (
     updateDate DATETIME  ,
     PRIMARY KEY (id)
 );
+
+
+CREATE TABLE subscribe (
+    id INT NOT NULL AUTO_INCREMENT,
+    siteUserID INT NOT NULL,
+    storageSize INT NOT NULL,
+    `period` INT NOT NULL,
+    headCount INT NOT NULL,
+    `rank` VARCHAR(255) NOT NULL,
+    `office` VARCHAR(255)  NULL,
+    `phoneNumber` VARCHAR(255)  NULL,
+    createDate DATETIME  DEFAULT CURRENT_TIMESTAMP,
+    updateDate DATETIME  ,
+    PRIMARY KEY (id),
+    FOREIGN KEY (siteUserId) REFERENCES siteUser(id)
+
+
+);
