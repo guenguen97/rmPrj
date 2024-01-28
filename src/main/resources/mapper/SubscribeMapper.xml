@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.rm.subscribe.SubscribeMapper">
+    <sql id="subscribeColumns">
+        id
+        , siteUserId
+        , storageSize
+        , period
+        , headCount
+        , rank
+        , office
+        , phoneNumber
+        , createDate
+        , updateDate
+    </sql>
+
+    <insert id="save" parameterType="com.rm.subscribe.SubscribeRequest" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO subscribe (
+        <include refid="subscribeColumns" />
+        ) VALUES (
+        #{id}
+        , #{siteUserId}
+        , #{storageSize}
+        , #{period}
+        , #{headCount}
+        , #{rank}
+        , #{office}
+        , #{phoneNumber}
+        , NOW()
+        , NULL
+        )
+
+    </insert>
+
+</mapper>

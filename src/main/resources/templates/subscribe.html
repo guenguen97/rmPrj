@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구독 신청 페이지</title>
+    <style>
+        body {
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h2>필수 정보들</h2>
+
+<form th:action="@{/post/subscribe}" method="post">
+    <!-- Required Information -->
+    <label for="headCount">Number of Users:</label>
+    <input type="number" id="headCount" name="headCount" required>
+
+    <label for="rank">Service Type:</label>
+    <select id="rank" name="rank" required>
+        <option value="Basic">Basic</option>
+        <option value="Standard">Standard</option>
+        <option value="Premium">Premium</option>
+    </select>
+
+    <label for="storageSize">Storage Capacity (TB):</label>
+    <input type="number" id="storageSize" name="storageSize" required>
+
+    <label for="period">Subscription Period (months):</label>
+    <input type="number" id="period" name="period" required>
+
+    <!-- Additional Information -->
+    <h3>부가 정보들</h3>
+
+    <label for="office">회사 이름:</label>
+    <input type="text" id="office" name="office">
+
+    <label for="phoneNumber">전화 번호:</label>
+    <input type="tel" id="phoneNumber" name="phoneNumber">
+
+
+    <!-- Submit Button -->
+    <button type="submit">구독 신청</button>
+</form>
+
+</body>
+</html>
