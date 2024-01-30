@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.rm.pay.PayMapper">
+    <sql id="payRecordColumns">
+        id
+        , siteUserId
+        , aid
+        , tid
+        , partner_user_id
+        , total
+        , quantity
+        , item_name
+        , createDate
+        , updateDate
+    </sql>
+
+    <insert id="save" parameterType="map" useGeneratedKeys="true" keyProperty="kakaoApproveResponse.id">
+        INSERT INTO payRecord (
+        <include refid="payRecordColumns" />
+        ) VALUES (
+        #{kakaoApproveResponse.id}
+        , #{siteUserId}
+        , #{kakaoApproveResponse.aid}
+        , #{kakaoApproveResponse.tid}
+        , #{kakaoApproveResponse.partner_user_id}
+        , #{kakaoApproveResponse.amount.total}
+        , #{kakaoApproveResponse.quantity}
+        , #{kakaoApproveResponse.item_name}
+        , #{kakaoApproveResponse.created_at}
+        , NULL
+        )
+
+    </insert>
+
+</mapper>

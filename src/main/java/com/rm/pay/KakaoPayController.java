@@ -1,9 +1,14 @@
 package com.rm.pay;
 
+import com.rm.user.SiteUserRequest;
+import com.rm.user.SiteUserResponse;
+import com.rm.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/payment")
@@ -11,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class KakaoPayController {
 
     private final KakaoPayService kakaoPayService;
+    private final UserService userService;
 
 
 
@@ -24,9 +30,15 @@ public class KakaoPayController {
     }
 
     @GetMapping("/success")
-    public ResponseEntity afterPayRequest(@RequestParam("pg_token") String pgToken) {
+    public ResponseEntity afterPayRequest(@RequestParam("pg_token") String pgToken, Principal principal) {
+        SiteUserResponse user= userService.findUserByUserID(principal.getName());
+
 
         KakaoApproveResponse kakaoApprove = kakaoPayService.approveResponse(pgToken);
+//        kakaoApprove.setId(1L);
+        System.out.println(kakaoApprove.getPartner_order_id()+"!!!!!!!!!!!!!!!!!");
+        kakaoPayService.savePayRecord(kakaoApprove,user.getId());
+
 
         return new ResponseEntity<>(kakaoApprove, HttpStatus.OK);
     }

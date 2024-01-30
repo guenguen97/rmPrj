@@ -30,3 +30,20 @@ CREATE TABLE subscribe (
 
 
 );
+
+CREATE TABLE payRecord (
+    id INT NOT NULL AUTO_INCREMENT,
+    siteUserID INT NOT NULL,
+    `aid` VARCHAR(255) NOT NULL,
+     `tid` VARCHAR(255)  NULL,
+     `partner_user_id` VARCHAR(255) NOT NULL,
+    `total` INT NOT NULL,
+    quantity INT NOT NULL,
+    `item_name` VARCHAR(255)  NULL,
+    createDate DATETIME ,
+    updateDate DATETIME  ,
+    PRIMARY KEY (id),
+    FOREIGN KEY (siteUserId) REFERENCES siteUser(id)
+
+
+);

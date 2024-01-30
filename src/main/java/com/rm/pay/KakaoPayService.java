@@ -15,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
 @Transactional
 public class KakaoPayService {
 
-
+    private  final PayMapper payMapper;
     static final String cid = "TC0ONETIME"; // 가맹점 테스트 코드
     private String adminKey;
 
@@ -23,16 +23,18 @@ public class KakaoPayService {
     String key;
     private KakaoReadyResponse kakaoReady;
 
+
+    //여기 매개변수에 구독요청 클래스 변수들을 추가 해야됨
     public KakaoReadyResponse kakaoPayReady() {
 
         // 카카오페이 요청 양식
         MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
         parameters.add("cid", cid);
-        parameters.add("partner_order_id", "100");
+        parameters.add("partner_order_id", "RmSoft");
         parameters.add("partner_user_id", "가맹점 회원 ID");
         parameters.add("item_name", "상품명");
-        parameters.add("quantity", "2");
-        parameters.add("total_amount", "2100");
+        parameters.add("quantity", "1");
+        parameters.add("total_amount", "10000");
         parameters.add("vat_amount", "100");
         parameters.add("tax_free_amount", "100");
         parameters.add("approval_url", "http://localhost:8090/payment/success"); // 성공 시 redirect url
@@ -57,7 +59,7 @@ public class KakaoPayService {
         MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
         parameters.add("cid", cid);
         parameters.add("tid", kakaoReady.getTid());
-        parameters.add("partner_order_id", "100");
+        parameters.add("partner_order_id", "RmSoft");
         parameters.add("partner_user_id", "가맹점 회원 ID");
         parameters.add("pg_token", pgToken);
 
@@ -86,5 +88,10 @@ public class KakaoPayService {
         httpHeaders.set("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 
         return httpHeaders;
+    }
+
+    public void savePayRecord(KakaoApproveResponse kakaoApproveResponse,Long siteUserId){
+        payMapper.save(kakaoApproveResponse, siteUserId );
+
     }
 }

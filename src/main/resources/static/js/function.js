@@ -32,7 +32,7 @@ function isValid(target, fieldName, focusTarget) {
 
     function getJson(uri, params) {
 
-        let json = {}
+        let json = {};
 
         $.ajax({
             url : uri,
@@ -55,7 +55,7 @@ function isValid(target, fieldName, focusTarget) {
     function callApi(uri, method, params) {
         var token = $("meta[name='_csrf']").attr("content");
 		var header = $("meta[name='_csrf_header']").attr("content");
-        let json = {}
+        let json = {};
          JSON.stringify(params);
          $.ajax({
             url : uri,
