@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html layout:decorate="~{common/layout}">
 <div layout:fragment="content" class="container my-3">
-
+  <div sec:authorize="isAuthenticated()" th:text="${@rq.user.userName}"></div>
   <div> 메인입니다</div>
 </div>
 

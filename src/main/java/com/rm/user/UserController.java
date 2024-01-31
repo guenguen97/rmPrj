@@ -38,9 +38,7 @@ public class UserController {
     }
 
     @GetMapping("/myPage")
-    public String myPage(Principal principal, Model model){
-        SiteUserResponse user=rq.getUser();
-        model.addAttribute("user" ,user);
+    public String myPage(){
         return "myPage";
     }
 
@@ -61,6 +59,23 @@ public class UserController {
     public int countMemberByLoginId(@RequestParam (name = "userID") final String userID) {
         System.out.println(userID+"!!!!!!!!!!!!!!!!!!!!!!!!");
         return userService.countSiteUserByUserID(userID);
+    }
+
+
+    @GetMapping("/changeInfor")
+    public String changeInfor(){
+        return "changeInfor";
+    }
+
+    @PatchMapping("/information/{id}")
+    @ResponseBody
+    public Long updateMember(@PathVariable(name = "id") final Long id, @RequestBody final SiteUserRequest params) {
+        System.out.println("회원 정보 수정 시작!!!!!!!!!!!!!!");
+        System.out.println(params.getUserName());
+        params.setId(id);
+        System.out.println(params.getId());
+        System.out.println(params.getEmail());
+        return userService.updateUser(params);
     }
 
 }

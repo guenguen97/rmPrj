@@ -122,6 +122,8 @@ public class Rq {
     private String getLoginedMemberUserID() {
         if (isLogout()) return null;
 
+
+
         return user.getUsername();
     }
     public SiteUserResponse getUser() {

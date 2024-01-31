@@ -42,6 +42,21 @@
 
     </insert>
 
+    <!-- 회원 정보 수정 -->
+    <update id="update" parameterType="com.rm.user.SiteUserRequest">
+        UPDATE siteUser
+        SET
+        updateDate = NOW()
+        , userName = #{userName}
+        , email = #{email}
+
+<!--        <if test="password != null and password != ''">-->
+<!--            , password = #{password}-->
+<!--        </if>-->
+        WHERE
+        id = #{id}
+    </update>
+
 
     <select id="getByUserID" parameterType="String" resultType="com.rm.user.SiteUserResponse">
         SELECT

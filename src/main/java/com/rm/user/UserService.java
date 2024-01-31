@@ -3,6 +3,7 @@ package com.rm.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -33,8 +34,14 @@ public class UserService {
 
         return user.getId();
 
+    }
 
+    @Transactional
+    public Long updateUser(final SiteUserRequest params) {
 
+        userMapper.update(params);
+        System.out.println("업데이트 끝!!!!!!!!!!!!!!!");
+        return params.getId();
     }
 
     public int countSiteUserByUserID(String userID) {
