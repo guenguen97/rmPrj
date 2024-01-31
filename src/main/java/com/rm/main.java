@@ -17,7 +17,7 @@ public class main {
     private UserService userService;
     @GetMapping("/")
     public String main(){
-        return "kakaoPay";
+        return "main";
     }
 
 

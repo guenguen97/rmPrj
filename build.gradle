@@ -37,6 +37,7 @@ dependencies {
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 
 	implementation 'mysql:mysql-connector-java:8.0.23'  // Add the MySQL connector version suitable for your MySQL version
+	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
 
 
 }

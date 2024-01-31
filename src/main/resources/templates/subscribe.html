@@ -1,36 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html layout:decorate="~{common/layout}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>구독 신청 페이지</title>
-    <style>
-        body {
-            margin: 20px;
-        }
+    <link rel="stylesheet" th:href="@{/css/subscribe.css}" />
+    <link rel="stylesheet" th:href="@{/css/default.css}" />
+    <link rel="stylesheet" th:href="@{/css/common.css}" />
+    <link rel="stylesheet" th:href="@{/css/content.css}" />
+    <link rel="stylesheet" th:href="@{/css/button.css}" />
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
 
-        input, select {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-        }
-
-        button {
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-    </style>
 </head>
-<body>
+
+<body layout:fragment="content" class="container my-3">
+
+
 
 <h2>필수 정보들</h2>
 
@@ -67,4 +52,6 @@
 </form>
 
 </body>
+
 </html>
+

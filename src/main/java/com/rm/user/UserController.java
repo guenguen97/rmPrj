@@ -1,16 +1,22 @@
 package com.rm.user;
 
+import com.rm.util.Rq;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
     private final UserService userService;
+
+    Rq rq;
 
     @Autowired
     public UserController(UserService userService) {
@@ -31,6 +37,12 @@ public class UserController {
         return "login";
     }
 
+    @GetMapping("/myPage")
+    public String myPage(Principal principal, Model model){
+        SiteUserResponse user=rq.getUser();
+        model.addAttribute("user" ,user);
+        return "myPage";
+    }
 
 
     @PostMapping("/signUp" )
