@@ -27,6 +27,7 @@ public class SubscribeController {
 
     @PostMapping("/post/subscribe")
     public String requestSubscribe(SubscribeRequest subscribeRequest, Principal principal){
+
         SiteUserResponse user = userService.findUserByUserID(principal.getName());
         System.out.println(user.getId());
         subscribeRequest.setSiteUserId(user.getId());
