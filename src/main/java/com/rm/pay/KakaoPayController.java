@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -20,7 +21,7 @@ import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.security.Principal;
 
-@RestController
+@Controller
 @RequestMapping("/payment")
 @RequiredArgsConstructor
 public class KakaoPayController {
@@ -47,7 +48,7 @@ public class KakaoPayController {
     }
 
     @GetMapping("/success")
-    public ResponseEntity afterPayRequest(@RequestParam("pg_token") String pgToken,
+    public String afterPayRequest(@RequestParam("pg_token") String pgToken,
              Principal principal) {
         SiteUserResponse user= userService.findUserByUserID(principal.getName());
 
@@ -64,14 +65,15 @@ public class KakaoPayController {
 
 
         System.out.println("완료 되기 직전!!!!!!!!!!!");
-        return new ResponseEntity<>(kakaoApprove, HttpStatus.OK);
+//        return new ResponseEntity<>(kakaoApprove, HttpStatus.OK);
+        return "main";
     }
     /**
      * 결제 진행 중 취소
      */
     @GetMapping("/cancel")
     public String cancel() {
-        return "main";
+        return "subscribe";
     }
 
     /**
@@ -80,6 +82,6 @@ public class KakaoPayController {
     @GetMapping("/fail")
     public String fail() {
 
-        return "main";
+        return "subscribe";
     }
 }
