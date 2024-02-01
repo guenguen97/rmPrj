@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html layout:decorate="~{common/layout}">
+<div layout:fragment="content" class="container my-3">
+    <div class="main-container">
+        <div th:if="${@rq.subscribe != null}">
+            <div>
+                <span th:text="${@rq.user.userName}"></span>
+                <span>님의 서비스 이용기간은</span>
+                <span th:text="${@rq.subscribe.period}"></span><span>달 남았습니다.</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</html>
+
+<style>
+
+    .main-container {
+      width:400px; margin-left:auto; margin-right: auto;
+
+
+</style>
+
+
+<script th:src="@{/js/function.js}"></script>
+<script th:src="@{/js/jquery-3.6.0.min.js}"></script>
+<script th:src="@{/js/common.js}"></script>
+<script src="https://kit.fontawesome.com/79613ae794.js" crossorigin="anonymous"></script>
+
+
+<script>
+
+    function getJson2(uri) {
+
+        let json = {};
+
+        $.ajax({
+            url : uri,
+            type : 'get',
+            dataType : 'json',
+
+
+            success : function (response) {
+                console.log("성공");
+                json = response;
+            },
+            error : function (request, status, error) {
+                console.log(error)
+                console.log("실패");
+            }
+        })
+
+        return json;
+    }
+
+
+        function getCurrentSubscribe() {
+    $.ajax({
+        url: '/currentSubscribe',
+        type: 'get',
+        xhrFields: {
+            withCredentials: true
+        },
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+
+        success: function(response) {
+            // Handle the SubscribeResponse in your JavaScript code
+            console.log(response);
+
+            // Example: Display the data on the HTML page
+            displaySubscribeInfo(response);
+        },
+        error: function(request, status, error) {
+            console.error(error);
+            // Handle errors as needed
+        }
+    });
+}
+</script>
+<script >
+    getJson2("/currentSubscribe");
+      getJson("/currentSubscribe",null);
+
+
+
+
+</script>

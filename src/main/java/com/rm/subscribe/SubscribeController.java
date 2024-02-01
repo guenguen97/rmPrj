@@ -2,11 +2,16 @@ package com.rm.subscribe;
 
 import com.rm.user.SiteUserResponse;
 import com.rm.user.UserService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class SubscribeController {
@@ -55,6 +60,34 @@ public class SubscribeController {
 
          subscribeService.updatePeriod(params);
 
+
+    }
+
+    @GetMapping("/currentSubscribePage")
+    public String currentSubscribePage(){
+
+        return "currentSubscribe";
+    }
+
+//    @GetMapping("/currentSubscribePage")
+//    @ResponseBody
+//    public ResponseEntity<SubscribeResponse> currentSubscribe(Principal principal){
+//        SiteUserResponse user=userService.findUserByLoginID(principal.getName());
+//        SubscribeResponse subscribeResponse=subscribeService.getSubscribeByUserId(user.getId());
+//
+//        return subscribeResponse;
+//    }
+
+    @GetMapping("/currentSubscribe")
+    @ResponseBody
+    public SubscribeResponse currentSubscribe(Principal principal) {
+
+
+            SiteUserResponse user = userService.findUserByLoginID(principal.getName());
+            SubscribeResponse subscribeResponse = subscribeService.getSubscribeByUserId(user.getId());
+
+
+            return subscribeResponse;
 
     }
 

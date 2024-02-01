@@ -30,7 +30,7 @@ function isValid(target, fieldName, focusTarget) {
 }
 
 
-    function getJson(uri, params) {
+    function getJson(uri,params) {
 
         let json = {};
 
@@ -41,10 +41,13 @@ function isValid(target, fieldName, focusTarget) {
             data : params,
             async : false,
             success : function (response) {
+                console.log("성공");
                 json = response;
+                console.log(json);
             },
             error : function (request, status, error) {
                 console.log(error)
+                console.log("실패");
             }
         })
 

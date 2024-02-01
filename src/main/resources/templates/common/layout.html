@@ -64,6 +64,7 @@
 
                         <li class="nav-item" sec:authorize="isAuthenticated()">
                             <a th:if="${@rq.countSubscribe}>=1" href="/updateSubscribe"><i class="fa-solid fa-user"></i>구독 기간 연장</a>
+                            <a th:if="${@rq.countSubscribe}>=1" href="/currentSubscribePage"><i class="fa-solid fa-user"></i>현재 구독 정보</a>
 
                             <a th:if="${@rq.countSubscribe}<1" href="/subscribe"><i class="fa-solid fa-user"></i>구독 신청</a>
                         </li>
