@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html layout:decorate="~{common/layout}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구독 신청 페이지</title>
+    <link rel="stylesheet" th:href="@{/css/subscribe.css}" />
+    <link rel="stylesheet" th:href="@{/css/default.css}" />
+    <link rel="stylesheet" th:href="@{/css/common.css}" />
+    <link rel="stylesheet" th:href="@{/css/content.css}" />
+    <link rel="stylesheet" th:href="@{/css/button.css}" />
+
+
+</head>
+
+<body layout:fragment="content" class="container my-3">
+<div th:text="${@rq.user.id}" id="userIdText"></div>
+
+
+
+<h2>필수 정보들</h2>
+
+<form id="updateForm" onsubmit="return false;" >
+    <!-- Required Information -->
+
+
+    <label for="period">구독 기간 (달)</label>
+    <input type="number" id="period" name="period" required>
+
+    <!-- Additional Information -->
+
+
+    <!-- Submit Button -->
+    <button type="button" onclick="updatePeriod();">기간 연장 신청</button>
+</form>
+
+</body>
+
+</html>
+
+<script>
+function updatePeriod() {
+    let userId=$('#userIdText').text();
+
+// 1. 필드 유효성 검사
+const form = document.getElementById('updateForm');
+<!--validationMemberInfo(form);-->
+console.log(form);
+
+
+// 2. 파라미터 세팅
+const params = {}
+new FormData(form).forEach((value, key) => params[key] = value.trim());
+
+console.log(params);
+// 3. Save API 호출
+callApi('/subscribe/period/'+userId, 'patch', params);
+alert('구독기간이 연장되었습니다!');
+closeSignupPopup();
+}
+
+</script>
+
+<script th:src="@{/js/function.js}"></script>
+<script th:src="@{/js/jquery-3.6.0.min.js}"></script>
+<script th:src="@{/js/common.js}"></script>
+<script src="https://kit.fontawesome.com/79613ae794.js" crossorigin="anonymous"></script>

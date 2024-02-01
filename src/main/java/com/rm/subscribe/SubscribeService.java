@@ -25,4 +25,9 @@ public class SubscribeService {
         return subscribeMapper.countSubscribeByUserId(userId);
     }
 
+    public String updatePeriod(SubscribeRequest params) {
+
+
+        return subscribeMapper.updatePeriod(params);
+    }
 }

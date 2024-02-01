@@ -21,20 +21,20 @@
 
 <form th:action="@{/payment/ready}" method="post">
     <!-- Required Information -->
-    <label for="headCount">Number of Users:</label>
+    <label for="headCount">총 사용 인원 (명)</label>
     <input type="number" id="headCount" name="headCount" required>
 
-    <label for="rank">Service Type:</label>
+    <label for="rank">서비스 등급</label>
     <select id="rank" name="rank" required>
         <option value="Basic">Basic</option>
         <option value="Standard">Standard</option>
         <option value="Premium">Premium</option>
     </select>
 
-    <label for="storageSize">Storage Capacity (TB):</label>
+    <label for="storageSize">서비스 용량 (TB)</label>
     <input type="number" id="storageSize" name="storageSize" required>
 
-    <label for="period">Subscription Period (months):</label>
+    <label for="period">구독 기간 (달)</label>
     <input type="number" id="period" name="period" required>
 
     <!-- Additional Information -->
