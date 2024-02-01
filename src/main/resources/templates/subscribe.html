@@ -13,45 +13,46 @@
 
 </head>
 
-<body layout:fragment="content" class="container my-3">
+<body>
+<div  layout:fragment="content" class="container my-3">
 
-<div class="main-container">
+    <div class="main-container">
 
-    <h2 style="margin-bottom:10px; font-size:20px">필수 정보들</h2>
-<!--th:action="@{/payment/ready}"-->
-    <form  id="signupForm" th:action="@{/payment/ready}"  method="post">
-        <!-- Required Information -->
-        <label for="headCount">총 사용 인원 (명)</label>
-        <input type="number" id="headCount" name="headCount" required>
+        <h2 style="margin-bottom:10px; font-size:20px">필수 정보들</h2>
+    <!--th:action="@{/payment/ready}"-->
+        <form  id="signupForm" th:action="@{/payment/ready}"  method="post">
+            <!-- Required Information -->
+            <label for="headCount">총 사용 인원 (명)</label>
+            <input type="number" id="headCount" name="headCount" required>
 
-        <label for="rank">서비스 등급</label>
-        <select id="rank" name="rank" required>
-            <option value="Basic">Basic</option>
-            <option value="Standard">Standard</option>
-            <option value="Premium">Premium</option>
-        </select>
+            <label for="rank">서비스 등급</label>
+            <select id="rank" name="rank" required>
+                <option value="Basic">Basic</option>
+                <option value="Standard">Standard</option>
+                <option value="Premium">Premium</option>
+            </select>
 
-        <label for="storageSize">서비스 용량 (TB)</label>
-        <input type="number" id="storageSize" name="storageSize" required>
+            <label for="storageSize">서비스 용량 (TB)</label>
+            <input type="number" id="storageSize" name="storageSize" required>
 
-        <label for="period">구독 기간 (달)</label>
-        <input type="number" id="period" name="period" required>
+            <label for="period">구독 기간 (달)</label>
+            <input type="number" id="period" name="period" required>
 
-        <!-- Additional Information -->
-        <h3 style="margin-top:20px; margin-bottom:10px; font-size:20px;">부가 정보들</h3>
+            <!-- Additional Information -->
+            <h3 style="margin-top:20px; margin-bottom:10px; font-size:20px;">부가 정보들</h3>
 
-        <label for="office">회사 이름:</label>
-        <input type="text" id="office" name="office">
+            <label for="office">회사 이름:</label>
+            <input type="text" id="office" name="office">
 
-        <label for="phoneNumber">전화 번호:</label>
-        <input type="tel" id="phoneNumber" name="phoneNumber">
+            <label for="phoneNumber">전화 번호:</label>
+            <input type="tel" id="phoneNumber" name="phoneNumber">
 
 
-        <!-- Submit Button -->
-        <button style="display:block; margin-top:20px; margin-left:auto; margin-right:auto;" type="submit" class="btns btn_bdr2 " >구독 신청</button>
-    </form>
+            <!-- Submit Button -->
+            <button style="display:block; margin-top:20px; margin-left:auto; margin-right:auto;" type="submit" class="btns btn_bdr2 " >구독 신청</button>
+        </form>
+    </div>
 </div>
-
 </body>
 
 </html>

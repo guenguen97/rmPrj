@@ -13,28 +13,29 @@
 
 </head>
 
-<body layout:fragment="content" class="container my-3">
-<div style="display:none"  th:text="${@rq.user.id}" id="userIdText"></div>
+<body>
+    <div  layout:fragment="content" class="container my-3">
+        <div style="display:none"  th:text="${@rq.user.id}" id="userIdText"></div>
 
 
-<div class="main-container">
+        <div class="main-container">
 
 
-    <form id="updateForm"  th:action="@{/payment/ready}"   method="post">
-        <!-- Required Information -->
+            <form id="updateForm"  th:action="@{/payment/ready}"   method="post">
+                <!-- Required Information -->
 
 
-        <label for="period">구독 기간 (달)</label>
-        <input type="number" id="period" name="period" required>
+                <label for="period">구독 기간 (달)</label>
+                <input type="number" id="period" name="period" required>
 
-        <!-- Additional Information -->
+                <!-- Additional Information -->
 
 
-        <!-- Submit Button -->
-        <button type="submit" >기간 연장 신청</button>
-    </form>
-</div>
-
+                <!-- Submit Button -->
+                <button type="submit" >기간 연장 신청</button>
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>
