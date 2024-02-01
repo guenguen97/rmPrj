@@ -38,7 +38,7 @@ public class KakaoPayService {
     //여기 매개변수에 구독요청 클래스 변수들을 추가 해야됨
     public void kakaoPayReady(HttpServletResponse response , SubscribeRequest subscribeRequest,
                               Principal principal) throws IOException {
-        SiteUserResponse user=userService.findUserByUserID(principal.getName());
+        SiteUserResponse user=userService.findUserByLoginID(principal.getName());
         // 카카오페이 요청 양식
         MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
         parameters.add("cid", cid);
@@ -67,7 +67,7 @@ public class KakaoPayService {
 
     }
     public KakaoApproveResponse approveResponse(String pgToken ,Principal principal) {
-        SiteUserResponse user=userService.findUserByUserID(principal.getName());
+        SiteUserResponse user=userService.findUserByLoginID(principal.getName());
         // 카카오 요청
         MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
         parameters.add("cid", cid);

@@ -2,7 +2,9 @@
 <html layout:decorate="~{common/layout}">
 <div layout:fragment="content" class="container my-3">
 
-   <div th:text="${@rq.user.userName}"></div>
+   <div th:text="${@rq.user.userName}+의구독서비스이용기간은"></div>
+   <div th:text="${@rq.subscribe.period}+달+남았습니다"></div>
+
    <a th:href="@{/user/changeInfor}">회원정보 수정하기</a>
    <div>비밀번호 변경하기</div>
 </div>

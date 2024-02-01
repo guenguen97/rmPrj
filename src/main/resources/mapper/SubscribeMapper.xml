@@ -34,4 +34,29 @@
 
     </insert>
 
+
+    <select id="getSubscribeByUserId" parameterType="Long"  resultType="com.rm.subscribe.SubscribeResponse">
+        SELECT
+        <include refid="subscribeColumns"/>
+        FROM subscribe
+
+        WHERE
+        siteUserID=#{value}
+
+    </select>
+
+    <select id="countSubscribeByUserId" parameterType="Long" resultType="int">
+        SELECT
+        COUNT(*)
+        FROM
+        subscribe
+        WHERE
+
+        siteUserID = #{value}
+
+
+
+    </select>
+
+
 </mapper>

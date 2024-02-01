@@ -1,6 +1,8 @@
 package com.rm.util;
 
 
+import com.rm.subscribe.SubscribeResponse;
+import com.rm.subscribe.SubscribeService;
 import com.rm.user.SiteUserResponse;
 import com.rm.user.UserService;
 
@@ -38,11 +40,13 @@ public class Rq {
     private SiteUserResponse loginUser =null;
     private boolean login;
     private UserService userService;
+    private SubscribeService subscribeService;
+
     private User user;
 
 
 
-    public Rq(UserService userService ) {
+    public Rq(UserService userService , SubscribeService subscribeService) {
         ServletRequestAttributes sessionAttributes = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes()));
         HttpServletRequest request = sessionAttributes.getRequest();
         HttpServletResponse response = sessionAttributes.getResponse();
@@ -50,6 +54,7 @@ public class Rq {
         this.response = response;
         this.session = request.getSession();
         this.userService=userService;
+        this.subscribeService=subscribeService;
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
@@ -64,51 +69,51 @@ public class Rq {
     }
 
     // forwarding
-    public void forward(String forwardUrl) {
-        RequestDispatcher dispatcher = request.getRequestDispatcher(forwardUrl);
-        try {
-            dispatcher.forward(request, response);
-        } catch(ServletException | IOException e){
-            e.getMessage();
-        }
-    }
+//    public void forward(String forwardUrl) {
+//        RequestDispatcher dispatcher = request.getRequestDispatcher(forwardUrl);
+//        try {
+//            dispatcher.forward(request, response);
+//        } catch(ServletException | IOException e){
+//            e.getMessage();
+//        }
+//    }
 
     // unexpected_request
-    public String unexpectedRequestForWardUri(String msg){
+//    public String unexpectedRequestForWardUri(String msg){
+//
+//        request.setAttribute("msg", msg);
+//        return "forward:/404";
+//    }
 
-        request.setAttribute("msg", msg);
-        return "forward:/404";
-    }
+//    public Cookie getCookie(String name){
+//
+//        Cookie[] cookies = request.getCookies();
+//        if (cookies != null) {
+//            for (Cookie cookie : cookies) {
+//                if (cookie.getName().equals(name)) {
+//                    return cookie;
+//                }
+//            }
+//        }
+//
+//        return null;
+//    }
 
-    public Cookie getCookie(String name){
-
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals(name)) {
-                    return cookie;
-                }
-            }
-        }
-
-        return null;
-    }
-
-    public boolean isAdmin() {
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        Collection<? extends GrantedAuthority> grantedAuthorities = authentication.getAuthorities();
-        for(GrantedAuthority grantedAuthority: grantedAuthorities){
-
-            // admin 권한 확인
-            if(grantedAuthority.getAuthority().equals("ROLE_ADMIN")){
-                return true;
-            }
-        }
-
-        return false;
-    }
+//    public boolean isAdmin() {
+//
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//
+//        Collection<? extends GrantedAuthority> grantedAuthorities = authentication.getAuthorities();
+//        for(GrantedAuthority grantedAuthority: grantedAuthorities){
+//
+//            // admin 권한 확인
+//            if(grantedAuthority.getAuthority().equals("ROLE_ADMIN")){
+//                return true;
+//            }
+//        }
+//
+//        return false;
+//    }
 
     public boolean isLogin() {
         return user != null;
@@ -119,7 +124,7 @@ public class Rq {
     }
 
 
-    private String getLoginedMemberUserID() {
+    private String getLoginedMemberLoginID() {
         if (isLogout()) return null;
 
 
@@ -131,7 +136,7 @@ public class Rq {
             return null;
         }
         if(loginUser ==null) {
-            loginUser = userService.findUserByUserID(getLoginedMemberUserID());
+            loginUser = userService.findUserByLoginID(getLoginedMemberLoginID());
 
 
         }
@@ -140,8 +145,20 @@ public class Rq {
         return loginUser;
     }
 
+    public SubscribeResponse getSubscribe() {
+        SiteUserResponse loginUser=getUser();
+
+        return subscribeService.getSubscribeByUserId(loginUser.getId());
+
+    }
+
+    public int countSubscribe(){
+        SiteUserResponse loginUser=getUser();
+
+      return subscribeService.countSubscribeByUserId(loginUser.getId());
 
 
+    }
 
 
 //    public String historyBack(String msg) {

@@ -56,9 +56,9 @@ public class UserController {
 
     @GetMapping("/siteUser-count")
     @ResponseBody
-    public int countMemberByLoginId(@RequestParam (name = "userID") final String userID) {
-        System.out.println(userID+"!!!!!!!!!!!!!!!!!!!!!!!!");
-        return userService.countSiteUserByUserID(userID);
+    public int countMemberByLoginId(@RequestParam (name = "loginID") final String loginID) {
+        System.out.println(loginID+"!!!!!!!!!!!!!!!!!!!!!!!!");
+        return userService.countSiteUserByLoginID(loginID);
     }
 
 

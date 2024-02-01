@@ -50,7 +50,7 @@ public class KakaoPayController {
     @GetMapping("/success")
     public String afterPayRequest(@RequestParam("pg_token") String pgToken,
              Principal principal) {
-        SiteUserResponse user= userService.findUserByUserID(principal.getName());
+        SiteUserResponse user= userService.findUserByLoginID(principal.getName());
 
         SubscribeRequest subscribeRequest = (SubscribeRequest) httpSession.getAttribute("subscribeRequest");
 

@@ -5,7 +5,7 @@
 <mapper namespace="com.rm.user.UserMapper">
     <sql id="siteUserColumns">
           id
-        , userID
+        , loginID
         , userPw
         , userName
         , email
@@ -15,23 +15,15 @@
     </sql>
 
 
-    <resultMap id="UserResultMap" type="com.rm.user.SiteUserRequest">
-        <id property="id" column="userID"/>
-        <result property="userName" column="userName"/>
-        <result property="userPw" column="userPw"/>
-    </resultMap>
 
 
-    <select id="getUser" resultMap="UserResultMap">
-        SELECT * FROM siteUser
-    </select>
 
     <insert id="save" parameterType="com.rm.user.SiteUserRequest" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO siteUser (
         <include refid="siteUserColumns" />
         ) VALUES (
           #{id}
-        , #{userID}
+        , #{loginID}
         , #{userPw}
         , #{userName}
         , #{email}
@@ -58,26 +50,26 @@
     </update>
 
 
-    <select id="getByUserID" parameterType="String" resultType="com.rm.user.SiteUserResponse">
+    <select id="getByLoginID" parameterType="String" resultType="com.rm.user.SiteUserResponse">
         SELECT
             <include refid="siteUserColumns"/>
         FROM siteUser
 
         WHERE
             ticket = 1
-            AND userID = #{value}
+            AND loginID = #{value}
 
 
     </select>
 
-    <select id="getSiteUserByUserID" parameterType="String" resultType="int">
+    <select id="getSiteUserByLoginID" parameterType="String" resultType="int">
         SELECT
             COUNT(*)
         FROM
             siteUser
         WHERE
 
-           userID = #{value}
+        loginID = #{value}
 
 
 

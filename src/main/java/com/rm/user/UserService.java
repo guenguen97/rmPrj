@@ -20,12 +20,9 @@ public class UserService {
 
 
 
-    public List<SiteUserRequest> getUsers() {
-        return userMapper.getUser();
-    }
 
-    public SiteUserResponse findUserByUserID(String userID){
-        return userMapper.getByUserID(userID);
+    public SiteUserResponse findUserByLoginID(String loginID){
+        return userMapper.getByLoginID(loginID);
     }
 
     public Long create(SiteUserRequest user  ){
@@ -44,7 +41,7 @@ public class UserService {
         return params.getId();
     }
 
-    public int countSiteUserByUserID(String userID) {
-        return userMapper.getSiteUserByUserID(userID);
+    public int countSiteUserByLoginID(String loginID) {
+        return userMapper.getSiteUserByLoginID(loginID);
     }
 }

@@ -19,7 +19,7 @@
             <label for="email" class="form-label">이메일</label>
             <input type="email" th:value="${@rq.user.email}" name="email" class="form-control">
         </div>
-        <button type="button" class="btn btn-primary" onclick="updateUser();">회원가입</button>
+        <button type="button" class="btn btn-primary" onclick="updateUser();">정보 수정</button>
     </form>
 </div>
 
@@ -44,7 +44,7 @@
     console.log(params);
     // 3. Save API 호출
     callApi('/user/information/'+userId, 'patch', params);
-    alert('가입을 축하드립니다!\n로그인 후 서비스를 이용해 주세요.');
+    alert('회원 정보가 업데이트 되었습니다!');
 
     }
 </script>

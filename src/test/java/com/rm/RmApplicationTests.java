@@ -13,7 +13,6 @@ class RmApplicationTests {
 	@Test
 	void contextLoads() {
 
-		System.out.println(userService.findUserByUserID("asd").getUserID());
 	}
 
 }

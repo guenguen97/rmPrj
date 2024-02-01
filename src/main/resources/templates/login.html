@@ -38,8 +38,8 @@
                     </div>
                     <ul>
                         <li>
-                            <label for="userID" class="skip_info">아이디</label>
-                            <input type="text" id="userID" name="userID" placeholder="아이디" title="아이디" />
+                            <label for="loginID" class="skip_info">아이디</label>
+                            <input type="text" id="loginID" name="loginID" placeholder="아이디" title="아이디" />
                         </li>
                         <li>
                             <label for="password" class="skip_info">비밀번호</label>
@@ -68,7 +68,7 @@
                 <tr>
                     <th scope="row">아이디<span class="es">필수 입력</span></th>
                     <td>
-                        <input type="text" name="userID" placeholder="아이디" maxlength="20" style="width: 80%;" />
+                        <input type="text" name="loginID" placeholder="아이디" maxlength="20" style="width: 80%;" />
                         <button type="button" id="idCheckBtn" class="btns btn_st5" onclick="checkLoginId();" style="width: 20%; float: right;">중복 확인</button>
                     </td>
                 </tr>
@@ -116,7 +116,7 @@
     // 회원가입 팝업 close
     function closeSignupPopup() {
         const form = document.getElementById('signupForm');
-        form.userID.readOnly = false;
+        form.loginID.readOnly = false;
         form.querySelector('#idCheckBtn').disabled = false;
         form.reset();
         layerPopClose();
@@ -125,18 +125,18 @@
 
     // 아이디 중복 체크
     function checkLoginId() {
-        const userID = document.querySelector('#signupForm input[name="userID"]');
-        isValid(userID, '아이디');
-        const count = getJson(`/user/siteUser-count`, { userID : userID.value });
+        const loginID = document.querySelector('#signupForm input[name="loginID"]');
+        isValid(loginID, '아이디');
+        const count = getJson(`/user/siteUser-count`, { loginID : loginID.value });
 
         if (count > 0) {
             alert('이미 가입된 아이디가 있습니다.');
-            userID.focus();
+            loginID.focus();
             return false;
         }
 
         if (confirm('사용 가능한 아이디입니다.\n입력하신 아이디로 결정하시겠어요?')) {
-            userID.readOnly = true;
+            loginID.readOnly = true;
             document.getElementById('idCheckBtn').disabled = true;
         }
     }
@@ -152,7 +152,7 @@
             isValid(fields[i], fieldNames[i]);
         }
 
-        if (form.userID.readOnly === false) {
+        if (form.loginID.readOnly === false) {
             alert('아이디 중복 체크를 완료해 주세요.');
             throw new Error();
         }

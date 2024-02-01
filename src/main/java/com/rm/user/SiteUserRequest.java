@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class SiteUserRequest {
 
     private Long id;
-    private String userID;
+    private String loginID;
     private String userPw;
     private String userName;
     private String email;

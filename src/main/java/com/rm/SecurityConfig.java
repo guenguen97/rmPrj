@@ -21,7 +21,7 @@ public class SecurityConfig {
                         .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
                 .formLogin((formLogin) -> formLogin
                         .loginPage("/user/login")
-                        .usernameParameter("userID")
+                        .usernameParameter("loginID")
                         .passwordParameter("userPw")
 
                         .defaultSuccessUrl("/"))
