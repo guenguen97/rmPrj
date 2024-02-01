@@ -7,6 +7,7 @@ import com.rm.subscribe.SubscribeResponse;
 import com.rm.subscribe.SubscribeService;
 import com.rm.user.SiteUserResponse;
 import com.rm.user.UserService;
+import com.rm.util.Alert;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -51,8 +54,9 @@ public class KakaoPayController {
 
     @GetMapping("/success")
     public String afterPayRequest(@RequestParam("pg_token") String pgToken,
-             Principal principal) {
+                                  Principal principal, Model model, RedirectAttributes redirectAttributes) {
         SiteUserResponse user= userService.findUserByLoginID(principal.getName());
+        Alert alert=new Alert();
 
         //전에 저장했던 구독 정보들 다시 갖고오기
         SubscribeRequest subscribeRequest = (SubscribeRequest) httpSession.getAttribute("subscribeRequest");
@@ -80,12 +84,19 @@ public class KakaoPayController {
             subscribeRequest.setPeriod(subscribeRequest.getPeriod()+originSub.getPeriod());
             System.out.println(subscribeRequest.getPeriod()+"합쳐진 기간!!!!!!!!!!!!!!!!!!!!!!");
              subscribeService.updatePeriod(subscribeRequest);
-            return "main";
+
+             //알림창 나오게 하기 위해 정보 전달
+            redirectAttributes.addAttribute("alertKind", "updatePeriod");
+
+            return "redirect:/";
         }
 
         System.out.println("완료 되기 직전!!!!!!!!!!!");
+        //알림창 나오게 하기 위해 정보 전달
+        redirectAttributes.addAttribute("alertKind", "createSubscribe");
+
 //        return new ResponseEntity<>(kakaoApprove, HttpStatus.OK);
-        return "main";
+        return "redirect:/";
     }
     /**
      * 결제 진행 중 취소
