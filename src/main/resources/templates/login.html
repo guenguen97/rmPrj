@@ -18,14 +18,11 @@
 <body>
 
 <div id="login_wrap">
-    <li class="nav-item">
-        <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/user/login}">로그인</a>
-        <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/user/logout}">로그아웃</a>
-    </li>
+   
     <div id="login_box">
         <div class="login_con">
             <div class="login_tit">
-                <h2>게시판 프로젝트</h2>
+                <h2>RM 프로젝트</h2>
                 <p>LOG<i>IN</i></p>
             </div>
 
@@ -36,18 +33,24 @@
                             사용자ID 또는 비밀번호를 확인해 주세요.
                         </div>
                     </div>
-                    <ul>
+                    <ul  sec:authorize="isAnonymous()" >
                         <li>
                             <label for="loginID" class="skip_info">아이디</label>
                             <input type="text" id="loginID" name="loginID" placeholder="아이디" title="아이디" />
                         </li>
-                        <li>
+                        <li >
                             <label for="password" class="skip_info">비밀번호</label>
                             <input type="password" id="password" name="userPw" title="비밀번호" placeholder="비밀번호" />
                         </li>
                     </ul>
-                    <button type="submit"  class="login_btn">로그인</button>
-                    <button type="button" onclick="openSignupPopup();" class="signup_btn">회원가입</button>
+                    <button type="submit"  sec:authorize="isAnonymous()" class="login_btn">로그인</button>
+                    <a th:href="@{/user/logout}"><button class="signup_btn" type="button" sec:authorize="isAuthenticated()"   >
+                        로그아웃</button></a>
+                    <button type="button"  sec:authorize="isAnonymous()" onclick="openSignupPopup();" class="signup_btn">회원가입</button>
+                    <a href="/"> <button type="button" sec:authorize="isAuthenticated()" class="signup_btn">
+                       메인 페이지
+                    </button></a>
+
                 </form>
             </div>
         </div>
@@ -146,7 +149,7 @@
     function validationMemberInfo(form) {
 
         const fields = form.querySelectorAll('input:not([type="radio"])');
-        const fieldNames = ['아이디', '비밀번호', '빕밀번호 재입력', '이름', '생년월일'];
+        const fieldNames = ['아이디', '비밀번호', '비밀번호 재입력', '이름', '이메일'];
 
         for (let i = 0, len = fields.length; i < len; i++) {
             isValid(fields[i], fieldNames[i]);

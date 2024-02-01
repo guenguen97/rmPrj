@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html layout:decorate="~{common/layout}">
 <div layout:fragment="content" class="container my-3">
-  <div sec:authorize="isAuthenticated()" th:text="${@rq.user.userName}"></div>
 <!--  ?. 는 alert 이 null 이면 false 로 인식 아예 div 가 렌더링 되지 않게 해준다 -->
   <div th:if="${alert?.kind != null}" id="alertKind" th:attr="data-alert-kind=${alert.kind}"></div>
-  <div> 메인입니다</div>
+
+  <div class="main-container">
+    <div> 메인입니다</div>
+  </div>
 </div>
 
 </html>
+<style>
 
+  .main-container {
+    width:300px; margin-left:auto; margin-right: auto;
+
+
+</style>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
       var alertKindElement = document.getElementById('alertKind');

@@ -10,6 +10,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title layout:title-pattern="$LAYOUT_TITLE" th:text="알엠소프트"></title>
 
+    <link rel="stylesheet" th:href="@{/css/button.css}" />
+    <link rel="stylesheet" th:href="@{/css/subscribe.css}" />
+    <link rel="stylesheet" th:href="@{/css/default.css}" />
+    <link rel="stylesheet" th:href="@{/css/content.css}" />
+
     <!-- Plugin -->
     <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css" />
     <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
@@ -74,7 +79,8 @@
 
 
             <div  class="navbar-end">
-                <div  class="userIdDiv" th:if="${@rq.login}" th:text="${@rq.user.id}"></div>
+                <p class="userIdDiv" th:if="${@rq.login}" th:text="${@rq.user.userName}"></p>
+                <p>님 환영합니다!</p>
 
 
             </div>

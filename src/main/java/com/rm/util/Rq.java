@@ -38,7 +38,6 @@ public class Rq {
     private final HttpServletResponse response;
     private final HttpSession session;
     private SiteUserResponse loginUser =null;
-    private boolean login;
     private UserService userService;
     private SubscribeService subscribeService;
 
@@ -68,52 +67,7 @@ public class Rq {
 
     }
 
-    // forwarding
-//    public void forward(String forwardUrl) {
-//        RequestDispatcher dispatcher = request.getRequestDispatcher(forwardUrl);
-//        try {
-//            dispatcher.forward(request, response);
-//        } catch(ServletException | IOException e){
-//            e.getMessage();
-//        }
-//    }
 
-    // unexpected_request
-//    public String unexpectedRequestForWardUri(String msg){
-//
-//        request.setAttribute("msg", msg);
-//        return "forward:/404";
-//    }
-
-//    public Cookie getCookie(String name){
-//
-//        Cookie[] cookies = request.getCookies();
-//        if (cookies != null) {
-//            for (Cookie cookie : cookies) {
-//                if (cookie.getName().equals(name)) {
-//                    return cookie;
-//                }
-//            }
-//        }
-//
-//        return null;
-//    }
-
-//    public boolean isAdmin() {
-//
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//
-//        Collection<? extends GrantedAuthority> grantedAuthorities = authentication.getAuthorities();
-//        for(GrantedAuthority grantedAuthority: grantedAuthorities){
-//
-//            // admin 권한 확인
-//            if(grantedAuthority.getAuthority().equals("ROLE_ADMIN")){
-//                return true;
-//            }
-//        }
-//
-//        return false;
-//    }
 
     public boolean isLogin() {
         return user != null;
@@ -159,24 +113,6 @@ public class Rq {
 
 
     }
-
-
-//    public String historyBack(String msg) {
-//        String referer = request.getHeader("referer");
-//        String key = "historyBackFailMsg___" + referer;
-//        request.setAttribute("localStorageKeyAboutHistoryBackFailMsg", key);
-//        request.setAttribute("historyBackFailMsg", Ut.url.withTtl(msg));
-//        // 200 이 아니라 400 으로 응답코드가 지정되도록
-//        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-//        return "common/js";
-//    }
-
-
-
-
-//    public String redirect(String url, String msg) {
-//        return "redirect:" + Ut.url.modifyQueryParam(url, "msg", Ut.url.encodeWithTtl(msg));
-//    }
 
 
 

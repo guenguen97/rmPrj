@@ -60,6 +60,9 @@ function isValid(target, fieldName, focusTarget) {
          $.ajax({
             url : uri,
             type : method,
+               xhrFields: {
+                    withCredentials: true
+                },
             contentType : 'application/json; charset=utf-8',
             dataType : 'json',
             data : (params) ? JSON.stringify(params) : {},

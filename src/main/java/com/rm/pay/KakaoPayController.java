@@ -40,11 +40,18 @@ public class KakaoPayController {
 
 
 
-    /**
-     * 결제요청
-     */
+   //결제 요청
+//    @PostMapping("/ready")
+//    public void readyToKakaoPay(HttpServletResponse response,  @ModelAttribute("subscribeRequest") SubscribeRequest subscribeRequest,
+//                                Principal principal) throws IOException {
+//        //결제 신청한 구독 정보들 미리 저장해놓기
+//        httpSession.setAttribute("subscribeRequest", subscribeRequest);
+//
+//        kakaoPayService.kakaoPayReady(response,subscribeRequest,principal);
+//    }
+
     @PostMapping("/ready")
-    public void readyToKakaoPay(HttpServletResponse response,  @ModelAttribute("subscribeRequest") SubscribeRequest subscribeRequest,
+    public void readyToKakaoPay(HttpServletResponse response, @ModelAttribute("subscribeRequest")  SubscribeRequest subscribeRequest,
                                 Principal principal) throws IOException {
         //결제 신청한 구독 정보들 미리 저장해놓기
         httpSession.setAttribute("subscribeRequest", subscribeRequest);
@@ -52,6 +59,9 @@ public class KakaoPayController {
         kakaoPayService.kakaoPayReady(response,subscribeRequest,principal);
     }
 
+
+
+    //결제 요청 성공
     @GetMapping("/success")
     public String afterPayRequest(@RequestParam("pg_token") String pgToken,
                                   Principal principal, Model model, RedirectAttributes redirectAttributes) {
@@ -78,11 +88,9 @@ public class KakaoPayController {
         }else {
             System.out.println("구독 연장 신청 함수 !!!!!!!!!!!!!!!!!!!");
             SubscribeResponse originSub=subscribeService.getSubscribeByUserId(user.getId());
-            System.out.println(originSub.getPeriod()+"원래 기간 !!!!!!!!!!!!!!");
             //기존에 있던 구독 기간이랑 요청 들어온 구독 연장 기간 더하기
             subscribeRequest.setId(user.getId());
             subscribeRequest.setPeriod(subscribeRequest.getPeriod()+originSub.getPeriod());
-            System.out.println(subscribeRequest.getPeriod()+"합쳐진 기간!!!!!!!!!!!!!!!!!!!!!!");
              subscribeService.updatePeriod(subscribeRequest);
 
              //알림창 나오게 하기 위해 정보 전달
@@ -91,24 +99,20 @@ public class KakaoPayController {
             return "redirect:/";
         }
 
-        System.out.println("완료 되기 직전!!!!!!!!!!!");
         //알림창 나오게 하기 위해 정보 전달
         redirectAttributes.addAttribute("alertKind", "createSubscribe");
 
 //        return new ResponseEntity<>(kakaoApprove, HttpStatus.OK);
         return "redirect:/";
     }
-    /**
-     * 결제 진행 중 취소
-     */
+
+    //결제 진행 중 취소
     @GetMapping("/cancel")
     public String cancel() {
         return "subscribe";
     }
 
-    /**
-     * 결제 실패
-     */
+   // 결제 실패
     @GetMapping("/fail")
     public String fail() {
 

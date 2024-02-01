@@ -14,30 +14,37 @@
 </head>
 
 <body layout:fragment="content" class="container my-3">
-<div th:text="${@rq.user.id}" id="userIdText"></div>
+<div style="display:none"  th:text="${@rq.user.id}" id="userIdText"></div>
 
 
-
-<h2>필수 정보들</h2>
-
-<form id="updateForm"  th:action="@{/payment/ready}"   method="post">
-    <!-- Required Information -->
+<div class="main-container">
 
 
-    <label for="period">구독 기간 (달)</label>
-    <input type="number" id="period" name="period" required>
-
-    <!-- Additional Information -->
+    <form id="updateForm"  th:action="@{/payment/ready}"   method="post">
+        <!-- Required Information -->
 
 
-    <!-- Submit Button -->
-    <button type="submit" >기간 연장 신청</button>
-</form>
+        <label for="period">구독 기간 (달)</label>
+        <input type="number" id="period" name="period" required>
+
+        <!-- Additional Information -->
+
+
+        <!-- Submit Button -->
+        <button type="submit" >기간 연장 신청</button>
+    </form>
+</div>
 
 </body>
 
 </html>
+<style>
 
+    .main-container {
+      width:300px; margin-left:auto; margin-right: auto;
+
+
+</style>
 <script>
 function updatePeriod() {
     let userId=$('#userIdText').text();
