@@ -38,15 +38,22 @@ public class KakaoPayService {
     //여기 매개변수에 구독요청 클래스 변수들을 추가 해야됨
     public void kakaoPayReady(HttpServletResponse response , SubscribeRequest subscribeRequest,
                               Principal principal) throws IOException {
+        String itemName="";
         SiteUserResponse user=userService.findUserByLoginID(principal.getName());
+        System.out.println(subscribeRequest.getRank()+"!!!!!!!!!!!!");
+        //연장 신청시에는 기간만 받아오기떔에 그거 예외 처리
+        if( subscribeRequest.getRank()==null){
+            itemName="연장 신청";
+        }else {
+        itemName=subscribeRequest.getRank();}
         // 카카오페이 요청 양식
         MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
         parameters.add("cid", cid);
         parameters.add("partner_order_id", "RmSoft");
         parameters.add("partner_user_id", user.getUserName());
-        parameters.add("item_name", subscribeRequest.getRank()); //구독한 등급 이름
+        parameters.add("item_name", itemName); //구독한 등급 이름
         parameters.add("quantity", ""+subscribeRequest.getPeriod()); // 구독 신청한 기간
-        parameters.add("total_amount", "10000"); //결제 금액 고정 만원
+        parameters.add("total_amount", "10000"); //결제 금액은 고정이기에 일단 만원
         parameters.add("vat_amount", "100");
         parameters.add("tax_free_amount", "100");
         parameters.add("approval_url", "http://localhost:8090/payment/success"); // 성공 시 redirect url

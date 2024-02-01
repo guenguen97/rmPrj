@@ -20,7 +20,7 @@
 
 <h2>필수 정보들</h2>
 
-<form id="updateForm" onsubmit="return false;" >
+<form id="updateForm"  th:action="@{/payment/ready}"   method="post">
     <!-- Required Information -->
 
 
@@ -31,7 +31,7 @@
 
 
     <!-- Submit Button -->
-    <button type="button" onclick="updatePeriod();">기간 연장 신청</button>
+    <button type="submit" >기간 연장 신청</button>
 </form>
 
 </body>

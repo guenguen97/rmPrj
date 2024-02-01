@@ -44,7 +44,7 @@ public class SubscribeController {
     }
     @PatchMapping("/subscribe/period/{id}")
     @ResponseBody
-    public String updatePeriod(@PathVariable(name = "id") final Long id,@RequestBody SubscribeRequest params){
+    public void updatePeriod(@PathVariable(name = "id") final Long id,@RequestBody SubscribeRequest params){
         params.setId(id);
         //기존에 있던 구독 기간 기록 갖고 오기
         SubscribeResponse originSub=subscribeService.getSubscribeByUserId(id);
@@ -53,7 +53,7 @@ public class SubscribeController {
         params.setPeriod(params.getPeriod()+originSub.getPeriod());
 
 
-        return subscribeService.updatePeriod(params);
+         subscribeService.updatePeriod(params);
 
 
     }

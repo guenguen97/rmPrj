@@ -10,5 +10,5 @@ public interface SubscribeMapper {
 
     int countSubscribeByUserId(Long userId);
 
-    String updatePeriod(SubscribeRequest params);
+    void updatePeriod(SubscribeRequest params);
 }

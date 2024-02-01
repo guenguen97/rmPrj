@@ -56,7 +56,7 @@
 
     </select>
 
-    <update id="updatePeriod" parameterType="com.rm.subscribe.SubscribeRequest">
+    <update id="updatePeriod" parameterType="com.rm.subscribe.SubscribeRequest" >
         UPDATE subscribe
         SET
         updateDate = NOW()
