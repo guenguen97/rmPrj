@@ -60,13 +60,11 @@
 
                         <li class="nav-item" sec:authorize="isAuthenticated()">
                             <a href="/user/myPage"><i class="fa-solid fa-user"></i>마이 페이지</a>
-                        </li>
-
                         <li class="nav-item" sec:authorize="isAuthenticated()">
-                            <a th:if="${@rq.countSubscribe}>=1" href="/updateSubscribe"><i class="fa-solid fa-user"></i>구독 기간 연장</a>
-                            <a th:if="${@rq.countSubscribe}>=1" href="/currentSubscribePage"><i class="fa-solid fa-user"></i>현재 구독 정보</a>
+                            <a th:if="${@rq.countSubscribe}>=1" href="/updateSubscribe"><i class="fa-regular fa-credit-card"></i>구독 기간 연장</a>
+                            <a th:if="${@rq.countSubscribe}>=1" href="/currentSubscribePage"><i class="fa-solid fa-book"></i>현재 구독 정보</a>
 
-                            <a th:if="${@rq.countSubscribe}<1" href="/subscribe"><i class="fa-solid fa-user"></i>구독 신청</a>
+                            <a th:if="${@rq.countSubscribe}<1" href="/subscribe"><i class="fa-regular fa-credit-card"></i>구독 신청</a>
                         </li>
 
 
@@ -91,7 +89,7 @@
 
 
     </header>
-    <main style="margin-top:200px;" class="flex-1 flex flex-col">
+    <main style="" class="flex-1 flex flex-col main">
 
         <th:block layout:fragment="content"></th:block>
     </main>

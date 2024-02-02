@@ -63,7 +63,7 @@
         , period = #{period}
 
         WHERE
-        id = #{id}
+        siteUserID = #{id}
     </update>
 
 
