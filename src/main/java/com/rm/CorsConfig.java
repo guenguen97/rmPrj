@@ -16,11 +16,12 @@ public class CorsConfig implements WebMvcConfigurer {
                 .maxAge(3600);
     }
 
-    //로그인 페이지는 예외처리 해두기
+    //로그인 ,회원 가입 아이디 중복 체크, 회원 가입 완료 api 는 예외 처리 해두기
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoggerInterceptor())
-                .excludePathPatterns("/css/**", "/images/**", "/js/**","/user/login");
+                .excludePathPatterns("/css/**", "/images/**", "/js/**",
+                        "/user/login","/user/siteUser-count","/user/signUp");
     }
 
 }

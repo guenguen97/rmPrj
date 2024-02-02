@@ -129,6 +129,7 @@
     // 아이디 중복 체크
     function checkLoginId() {
         const loginID = document.querySelector('#signupForm input[name="loginID"]');
+        console.log(loginID.value+"!!!!!!!!!");
         isValid(loginID, '아이디');
         const count = getJson(`/user/siteUser-count`, { loginID : loginID.value });
 
