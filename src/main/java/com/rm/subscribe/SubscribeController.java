@@ -29,6 +29,7 @@ public class SubscribeController {
         return "subscribe";
     }
 
+    //구독 정보 저장하기
     @PostMapping("/post/subscribe")
     public String requestSubscribe(SubscribeRequest subscribeRequest, Principal principal){
 
@@ -47,6 +48,8 @@ public class SubscribeController {
 
         return "updateSubscribe";
     }
+
+    //구독 기간 연장하기
     @PatchMapping("/subscribe/period/{id}")
     @ResponseBody
     public void updatePeriod(@PathVariable(name = "id") final Long id,@RequestBody SubscribeRequest params){
@@ -69,15 +72,7 @@ public class SubscribeController {
         return "currentSubscribe";
     }
 
-//    @GetMapping("/currentSubscribePage")
-//    @ResponseBody
-//    public ResponseEntity<SubscribeResponse> currentSubscribe(Principal principal){
-//        SiteUserResponse user=userService.findUserByLoginID(principal.getName());
-//        SubscribeResponse subscribeResponse=subscribeService.getSubscribeByUserId(user.getId());
-//
-//        return subscribeResponse;
-//    }
-
+    //현재 구독한 정보 갖고 오기
     @GetMapping("/currentSubscribe")
     @ResponseBody
     public SubscribeResponse currentSubscribe(Principal principal) {

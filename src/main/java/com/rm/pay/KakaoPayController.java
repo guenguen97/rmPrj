@@ -37,19 +37,7 @@ public class KakaoPayController {
     @Autowired
     private HttpSession httpSession;
 
-
-
-
-   //결제 요청
-//    @PostMapping("/ready")
-//    public void readyToKakaoPay(HttpServletResponse response,  @ModelAttribute("subscribeRequest") SubscribeRequest subscribeRequest,
-//                                Principal principal) throws IOException {
-//        //결제 신청한 구독 정보들 미리 저장해놓기
-//        httpSession.setAttribute("subscribeRequest", subscribeRequest);
-//
-//        kakaoPayService.kakaoPayReady(response,subscribeRequest,principal);
-//    }
-
+    //결제 요청
     @PostMapping("/ready")
     public void readyToKakaoPay(HttpServletResponse response, @ModelAttribute("subscribeRequest")  SubscribeRequest subscribeRequest,
                                 Principal principal) throws IOException {

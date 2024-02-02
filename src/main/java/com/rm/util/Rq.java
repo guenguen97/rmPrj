@@ -28,6 +28,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
+
+//네비바 에서 쓰이는 정보들은 거의 모든 html 에서 쓰여서 이곳에서 바로바로 정보 갖고 오려고
+// rq 를 만듬
 @Component
 //@Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
 @Getter
