@@ -23,13 +23,6 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/test")
-    @ResponseBody
-    public String test(){
-
-
-        return "test";
-    }
 
     @GetMapping("/login")
     public String signUp(){
@@ -43,6 +36,7 @@ public class UserController {
     }
 
 
+    //회원 가입 용
     @PostMapping("/signUp" )
     public String signUp(@RequestBody SiteUserRequest user){
         System.out.println("정보 받기 성공!!!!!!!!!!");
@@ -54,6 +48,8 @@ public class UserController {
         return "main";
     }
 
+
+    //아이디 중복 체크용
     @GetMapping("/siteUser-count")
     @ResponseBody
     public int countMemberByLoginId(@RequestParam (name = "loginID") final String loginID) {
@@ -67,6 +63,8 @@ public class UserController {
         return "changeInfor";
     }
 
+
+    // 회원 정보 수정
     @PatchMapping("/information/{id}")
     @ResponseBody
     public Long updateMember(@PathVariable(name = "id") final Long id, @RequestBody final SiteUserRequest params) {
@@ -76,6 +74,17 @@ public class UserController {
         System.out.println(params.getId());
         System.out.println(params.getEmail());
         return userService.updateUser(params);
+    }
+
+
+    //로그인한 회원 정보 갖고오기
+    @GetMapping("/information")
+    @ResponseBody
+    public SiteUserResponse getLoginUser(Principal principal){
+        SiteUserResponse user = userService.findUserByLoginID(principal.getName());
+
+        return user;
+
     }
 
 }

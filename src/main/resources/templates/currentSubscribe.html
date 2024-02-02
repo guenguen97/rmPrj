@@ -4,9 +4,12 @@
     <div class="main-container">
         <div th:if="${@rq.subscribe != null}">
             <div>
-                <span th:text="${@rq.user.userName}"></span>
-                <span>님의 서비스 이용기간은</span>
-                <span th:text="${@rq.subscribe.period}"></span><span>달 남았습니다.</span>
+
+
+                <div id="commentsContainer">
+
+
+                </div>
             </div>
         </div>
     </div>
@@ -20,6 +23,14 @@
     .main-container {
       width:400px; margin-left:auto; margin-right: auto;
 
+     }
+
+     .comment > div {
+      margin-bottom:30px;
+
+   }
+
+
 
 </style>
 
@@ -32,57 +43,31 @@
 
 <script>
 
-    function getJson2(uri) {
 
-        let json = {};
-
-        $.ajax({
-            url : uri,
-            type : 'get',
-            dataType : 'json',
-
-
-            success : function (response) {
-                console.log("성공");
-                json = response;
-            },
-            error : function (request, status, error) {
-                console.log(error)
-                console.log("실패");
-            }
-        })
-
-        return json;
-    }
-
-
-        function getCurrentSubscribe() {
-    $.ajax({
-        url: '/currentSubscribe',
-        type: 'get',
-        xhrFields: {
-            withCredentials: true
-        },
-        contentType: 'application/json; charset=utf-8',
-        dataType: 'json',
-
-        success: function(response) {
-            // Handle the SubscribeResponse in your JavaScript code
-            console.log(response);
-
-            // Example: Display the data on the HTML page
-            displaySubscribeInfo(response);
-        },
-        error: function(request, status, error) {
-            console.error(error);
-            // Handle errors as needed
-        }
-    });
-}
 </script>
 <script >
-    getJson2("/currentSubscribe");
-      getJson("/currentSubscribe",null);
+
+
+     let subscribeList= {};
+     subscribeList=getJson("/currentSubscribe",null);
+    console.log(subscribeList+"!!!!!!!!!!!!!!!!");
+    function displayComments(list) {
+        const commentsContainer = document.getElementById('commentsContainer');
+
+
+            commentsContainer.innerHTML += `
+                <div class="comment">
+                        <div>서비스 등급 : ${list.rank}</div>
+                        <div>남은 기간 : ${list.period}달</div>
+                        <div>사용 인원 : ${list.headCount}명</div>
+                        <div>회사 이름 : ${list.office}</div>
+                        <div>이용 가능한 용량 : ${list.storageSize}TB</div>
+                </div>
+            `;
+
+    }
+
+    displayComments(getJson("/currentSubscribe",null));
 
 
 
