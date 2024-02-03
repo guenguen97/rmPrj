@@ -45,7 +45,7 @@
             <input style="margin-bottom:20px;" type="text" id="office" name="office">
 
             <label for="phoneNumber">전화 번호</label>
-            <input style="margin-bottom:20px;" type="tel" id="phoneNumber" name="phoneNumber">
+            <input style="margin-bottom:20px;" type="number" id="phoneNumber" name="phoneNumber">
 
 
             <!-- Submit Button -->
@@ -83,6 +83,13 @@
     const params = {}
     new FormData(form).forEach((value, key) => params[key] = value.trim());
 
+    console.log(params.phoneNumber+"!!!!!!!");
+
+     alert('구독기간이 연장되었습니다!');
+    if(params.phoneNumber === ""){
+    params.phoneNumber=0;
+    }
+     params.phoneNumber=0;
     console.log(params);
     // 3. Save API 호출
     callApi('/payment/ready', 'POST', params);

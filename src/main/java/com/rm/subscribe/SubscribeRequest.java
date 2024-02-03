@@ -18,6 +18,6 @@ public class SubscribeRequest {
     private int headCount;
     private String rank;
     private String office;
-    private int phoneNumber;
+    private String phoneNumber;
     private LocalDateTime createDate;
 }

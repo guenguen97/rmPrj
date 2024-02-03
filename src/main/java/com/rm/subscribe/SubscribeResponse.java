@@ -23,7 +23,7 @@ public class SubscribeResponse {
     private int headCount;
     private String rank;
     private String office;
-    private int phoneNumber;
+    private String phoneNumber;
     private LocalDateTime createDate;
     private LocalDateTime updateDate;
 }

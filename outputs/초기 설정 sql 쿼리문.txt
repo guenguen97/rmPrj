@@ -1,5 +1,9 @@
+CREATE DATABASE rm;
 
-DROP TABLE siteUser;
+USE rm;
+
+
+
 
 CREATE TABLE siteUser (
     id INT NOT NULL AUTO_INCREMENT,
