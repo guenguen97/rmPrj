@@ -30,4 +30,9 @@ public class SubscribeService {
 
          subscribeMapper.updatePeriod(params);
     }
+
+    public void removeSubscribe(Long id) {
+        subscribeMapper.removeSubscribe(id);
+
+    }
 }

@@ -66,6 +66,15 @@
         siteUserID = #{id}
     </update>
 
+    <delete id="removeSubscribe" parameterType="Long" >
+        DELETE
+        From
+        subscribe
+
+        WHERE
+        siteUserID=#{id}
+
+    </delete>
 
 
 </mapper>

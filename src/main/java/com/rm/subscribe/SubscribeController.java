@@ -86,4 +86,14 @@ public class SubscribeController {
 
     }
 
+
+    @DeleteMapping("/currentSubscribe")
+    @ResponseBody
+    public void removeSubscribe(Principal principal){
+        SiteUserResponse user = userService.findUserByLoginID(principal.getName());
+        subscribeService.removeSubscribe(user.getId());
+
+
+    }
+
 }

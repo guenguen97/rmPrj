@@ -10,8 +10,16 @@
 
 
                 </div>
+
+                <button  style="font-size:30px;" type="button" class="btn btn-primary" onclick="showConfirmation()">구독 취소하기</button>
             </div>
         </div>
+
+        <div  th:if="${@rq.subscribe == null}">현재 구독한 서비스가 없습니다.</div>
+
+
+
+
     </div>
 
 </div>
@@ -73,6 +81,44 @@
     }
 
     displayComments(getJson("/currentSubscribe",null));
+
+
+
+
+</script>
+<script>
+    function cancelSubscribe() {
+
+
+
+        callApi("/currentSubscribe" ,"DELETE",null);
+
+        alert("구독이 취소되었습니다.");
+
+            location.reload();
+
+
+
+    }
+
+
+</script>
+
+<script>
+
+
+    function showConfirmation() {
+    // Display a confirmation dialog
+    var userConfirmed = window.confirm("정말 구독을 취소 하시겠습니까?");
+
+
+    if (userConfirmed) {
+       cancelSubscribe();
+    } else {
+
+        console.log("구독 취소 선택 취소");
+    }
+}
 
 
 
